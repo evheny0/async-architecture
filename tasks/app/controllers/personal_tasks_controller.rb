@@ -1,6 +1,6 @@
 class PersonalTasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.where(assignee_id: current_user.id)
   end
 
   def update
