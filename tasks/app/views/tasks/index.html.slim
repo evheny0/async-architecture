@@ -8,6 +8,7 @@ table
       th UUID
       th Title
       th Description
+      th Assignee
       th
   tbody
     - @tasks.each do |task|
@@ -15,4 +16,5 @@ table
         td = task.public_id
         td = task.title
         td = task.description
+        td = task.assignee&.email
         td = link_to "Edit", edit_task_path(task)
