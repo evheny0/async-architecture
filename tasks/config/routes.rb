@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   # get "/auth/:provider", to: "sessions#show", as: "omniauth"
 
   resources :tasks
+  resources :personal_tasks, only: %i(index update)
+  resource :reassign, only: %i(create)
+
   resources :sessions
 end
