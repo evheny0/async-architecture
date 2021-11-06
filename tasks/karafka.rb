@@ -14,15 +14,6 @@ if Rails.env.development?
   )
 end
 
-class EventsConsumer < ApplicationConsumer
-  # Example that utilizes ActiveRecord#insert_all and Karafka batch processing
-  def consume
-    # Store all of the incoming Kafka events locally in an efficient way
-    puts "123123123"
-  end
-end
-
-
 class KarafkaApp < Karafka::App
   setup do |config|
     config.kafka.seed_brokers = %w[kafka://127.0.0.1:9092]
@@ -50,8 +41,8 @@ class KarafkaApp < Karafka::App
   # )
 
   consumer_groups.draw do
-    topic "system_events" do
-      consumer EventsConsumer
+    topic "accounts-stream" do
+      consumer AccountsStreamConsumer
     end
 
     # topic :example do
