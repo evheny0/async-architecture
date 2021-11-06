@@ -41,6 +41,10 @@ class KarafkaApp < Karafka::App
   # )
 
   consumer_groups.draw do
+    topic "accounts-stream" do
+      consumer AccountsStreamConsumer
+    end
+
     # topic :example do
     #   consumer ExampleConsumer
     # end
