@@ -6,7 +6,6 @@ table
   thead
     tr
       th UUID
-      th Title
       th Description
       th Assignee
       th Status
@@ -15,7 +14,6 @@ table
     - @tasks.each do |task|
       tr
         td = task.public_id
-        td = task.title
         td = task.description
         td = task.assignee.email
         td = task.status
