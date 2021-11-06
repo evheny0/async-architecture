@@ -7,7 +7,24 @@ class TasksController < ApplicationController
   end
 
   def create
-    Task.create!(task_params.merge(public_id: SecureRandom.uuid, status: :created))
+    task = Task.create!(task_params.merge(public_id: SecureRandom.uuid, status: :created, creator_id: current_user.id))
+
+    event = {
+      event_name: 'TaskCreated',
+      data: {
+        public_id: task.public_id,
+      }.merge(task.slice(:assignee_id, :status, :creator_id, :description))
+    }
+    WaterDrop::SyncProducer.call(event.to_json, topic: 'tasks-stream')
+
+    event = {
+      event_name: 'TaskAssigned',
+      data: {
+        public_id: task.public_id,
+        assignee_id: task.assignee_id,
+      }
+    }
+    WaterDrop::SyncProducer.call(event.to_json, topic: 'tasks')
 
     redirect_to tasks_path
   end
@@ -26,6 +43,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :assignee_id)
+    params.require(:task).permit(:description, :assignee_id)
   end
 end
