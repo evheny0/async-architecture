@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :login_if_not
+  helper_method :current_user
 
   def current_user
     return if session[:user_id].blank?

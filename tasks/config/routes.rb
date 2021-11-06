@@ -4,12 +4,10 @@ Rails.application.routes.draw do
   root "tasks#index"
 
   get "/auth/:provider/callback", to: "sessions#create"
-  get "/auth/failure", to: "sessions#failure"
-  # get "/auth/:provider", to: "sessions#show", as: "omniauth"
 
   resources :tasks
   resources :personal_tasks, only: %i(index update)
   resource :reassign, only: %i(create)
 
-  resources :sessions
+  resource :sessions
 end

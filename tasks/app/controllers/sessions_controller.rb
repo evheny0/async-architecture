@@ -8,10 +8,16 @@ class SessionsController < ApplicationController
     redirect_to "/"
   end
 
+  def destroy
+    request.session[:user_id] = nil
+
+    redirect_to "/"
+  end
+
   def failure
     redirect_to "/"
   end
 
-  def index
+  def show
   end
 end
