@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { registrations: "registrations" }
+
+  root "accounts#index"
+  resources :accounts do
+    get :current, on: :collection
+  end
 end
