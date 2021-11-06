@@ -1,11 +1,15 @@
 class SessionsController < ApplicationController
+  skip_before_action :login_if_not
+
   def create
-    request.env["omniauth.auth"]
-    redirect_to '/'
+    user = User.find_by(public_id: request.env["omniauth.auth"]["info"]["public_id"])
+    request.session[:user_id] = user.id
+    
+    redirect_to "/"
   end
 
   def failure
-    binding.pry
+    redirect_to "/"
   end
 
   def index
