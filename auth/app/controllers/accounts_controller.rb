@@ -7,4 +7,26 @@ class AccountsController < ApplicationController
   def index
     @users = User.all
   end
+
+  def update
+    user = User.find(params[:id])
+    user.update!(user_params)
+
+    event = {
+      event_name: 'AccountUpdated',
+      data: {
+        public_id: user.public_id,
+        role: user.role,
+      }
+    }
+    KafkaProducer.produce_sync(topic: 'accounts-stream', payload: event.to_json)
+
+    redirect_to "/"
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:role)
+  end
 end

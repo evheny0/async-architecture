@@ -6,7 +6,7 @@ class AccountsStreamConsumer < ApplicationConsumer
       case payload["event_name"]
       when "AccountCreated"
         User.create!(email: payload["data"]["email"], public_id: payload["data"]["public_id"], role: payload["data"]["role"])
-      when "AccountRoleChanged"
+      when "AccountUpdated"
         User.find_by(public_id: payload["data"]["public_id"]).update!(role: payload["data"]["role"])
       end
     end
