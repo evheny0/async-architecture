@@ -25,6 +25,7 @@ gem "slim"
 gem "karafka"
 gem "waterdrop"
 gem "dotenv-rails"
+gem "schema_registry", path: "../event_schema_registry/ruby/"
 
 gem "sidekiq"
 gem "sidekiq-cron"
