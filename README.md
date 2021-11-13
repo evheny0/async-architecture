@@ -18,3 +18,17 @@ cd tasks
 bundle exec rails s -p 3001
 bundle exec karafka server
 ```
+
+Accounting application:
+```
+cd tasks
+bundle exec rails s -p 3002
+bundle exec karafka server
+```
+
+Analytics application:
+```
+cd tasks
+bundle exec rails s -p 3003
+bundle exec karafka server
+```
