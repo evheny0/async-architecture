@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_123616) do
+ActiveRecord::Schema.define(version: 2021_11_14_122420) do
+
+  create_table "balances", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.bigint "assignee_id"
@@ -19,6 +26,17 @@ ActiveRecord::Schema.define(version: 2021_11_13_123616) do
     t.string "public_id"
     t.string "title"
     t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "cost"
+    t.integer "reward"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "balance_id"
+    t.bigint "task_id"
+    t.integer "amount"
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

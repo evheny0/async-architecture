@@ -1,0 +1,21 @@
+- if current_user
+  = link_to "Sign out", destroy_user_session_path, method: :delete
+- else
+  = link_to "Sign in", new_user_session_path
+
+hr
+
+h1 Users
+
+
+table
+  thead
+    tr
+      th UUID
+      th Title
+      th Role
+  tbody
+    - @balances.each do |balance|
+      tr
+        td = balance.user.email
+        td = balance.balance
