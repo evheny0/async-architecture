@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
 
-  "title": "Tasks.Completed.v1",
-  "description": "json schema for BE tasks events (version 1)",
+  "title": "Tasks.Created.v1",
+  "description": "json schema for CUD tasks events (version 1)",
 
   "definitions": {
     "event_data": {
@@ -12,12 +12,24 @@
           "type": "string"
         },
         "status": {
-          "enum": ["created", "done"]
+          "enum": ["ptichka_v_kletke", "proso_v_miske"]
+        },
+        "assignee_id": {
+          "type": "string"
+        },
+        "creator_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       },
       "required": [
         "public_id",
-        "status"
+        "status",
+        "assignee_id",
+        "creator_id",
+        "description"
       ]
     }
   },
