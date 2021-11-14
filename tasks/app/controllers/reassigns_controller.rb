@@ -22,7 +22,7 @@ class ReassignsController < ApplicationController
 
       event = {
         event_id: SecureRandom.uuid,
-        event_version: 1,
+        event_version: 2,
         event_time: Time.now.to_s,
         producer: 'tasks_service',
         event_name: 'TaskUpdated',
