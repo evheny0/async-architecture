@@ -5,12 +5,12 @@ class PersonalTasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
-    task.update!(status: :done)
+    task.update!(status: :proso_v_miske)
 
 
     event = {
       event_id: SecureRandom.uuid,
-      event_version: 1,
+      event_version: 2,
       event_time: Time.now.to_s,
       producer: 'tasks_service',
       event_name: 'TaskCompleted',
@@ -24,7 +24,7 @@ class PersonalTasksController < ApplicationController
 
     event = {
       event_id: SecureRandom.uuid,
-      event_version: 1,
+      event_version: 2,
       event_time: Time.now.to_s,
       producer: 'tasks_service',
       event_name: 'TaskUpdated',

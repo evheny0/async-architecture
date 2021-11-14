@@ -12,7 +12,7 @@
           "type": "string"
         },
         "status": {
-          "type": "string"
+          "enum": ["created", "done"]
         },
         "assignee_id": {
           "type": "string"

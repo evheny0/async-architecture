@@ -7,11 +7,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    task = Task.create!(task_params.merge(public_id: SecureRandom.uuid, status: :created, creator_id: current_user.id))
+    task = Task.create!(task_params.merge(public_id: SecureRandom.uuid, status: :ptichka_v_kletke, creator_id: current_user.id))
 
     event = {
       event_id: SecureRandom.uuid,
-      event_version: 1,
+      event_version: 2,
       event_time: Time.now.to_s,
       producer: 'tasks_service',
       event_name: 'TaskCreated',
